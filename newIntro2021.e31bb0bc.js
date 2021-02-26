@@ -344,6 +344,7 @@ setInterval(function () {
     fadeInNum = fadeInNum + 0.007;
   }
 }, 10);
+var don = true;
 
 function fadeEvent(num, args) {
   ctx.save();
@@ -354,8 +355,9 @@ function fadeEvent(num, args) {
   ctx.fill();
   ctx.closePath();
 
-  if (num >= 1.2) {
+  if (num >= 1.2 && don) {
     args();
+    don = false;
   }
 }
 
@@ -364,7 +366,7 @@ movePg.addEventListener('click', function (event) {
   isMovePage = true;
 
   calback = function calback() {
-    location.href = './contents.html';
+    location.href = 'contents.html';
   };
 });
 
@@ -410,7 +412,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62720" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62935" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

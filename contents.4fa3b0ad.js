@@ -125406,52 +125406,52 @@ document.addEventListener("DOMContentLoaded", function () {
 var stars = ['<i class="fas fa-star" style="color : #d7d770"></i>', '<i class="fas fa-star-half-alt" style="color : #999945"></i>', '<i class="far fa-star" style="color : gray"></i>'];
 var statckDesc = ["\n     <div>\uC790\uBC14\uB294 11\uBC84\uC804\uAE4C\uC9C0 \uC0AC\uC6A9\uD574 \uBCF4\uC558\uC2B5\uB2C8\uB2E4. \uB78C\uB2E4\uC640 \uD568\uC218\uD615, stream\uC744 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC2A4\uD504\uB9C1, \uC2A4\uD504\uB9C1\uBD80\uD2B8, \uC804\uC790\uC815\uBD80, \uC2A4\uD2B8\uB7FF\uCE20 \uBC0F \uC6F9\uD50C\uB7ED\uC2A4 \uD504\uB808\uC784\uC6CC\uD06C\uB97C \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>Mybatis \uBC0F JPA \uBC29\uC2DD\uC758 \uB370\uC774\uD130\uBCA0\uC774\uC2A4 \uD504\uB808\uC784\uC6CC\uD06C\uB97C \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>ECMA\uC5D0 \uB300\uD574\uC11C \uAC1C\uB150\uC744 \uAC00\uC9C0\uACE0 \uC791\uC5C5\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4. </div>\n     <div>\uC5EC\uB7EC GIS\uC640 \uAD00\uB828\uB41C \uC791\uC5C5\uC744 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.(\uC624\uD508\uB808\uC774\uC5B4\uC2A4, \uCE74\uCE74\uC624\uD1A1\uB9F5 \uB4F1)</div>\n    ", "\n     <div>\uC575\uADE4\uB7EC \uBC84\uC804 2.0 \uC774\uC0C1\uBD80\uD130 \uB2E4\uB8F0 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uD30C\uC774\uC5B4\uBCA0\uC774\uC2A4\uC640 \uC5F0\uB3D9\uC744 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uD30C\uC140(\uB610\uB294 \uC6F9\uD329)\uD658\uACBD\uC744 \uAD6C\uCD95\uD558\uC5EC \uAC1C\uBC1C\uC744 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4. </div>\n     <div>\uD504\uB85D\uC2DC \uC124\uC815\uC744 \uD1B5\uD574 REST-API\uD615\uC2DD\uC73C\uB85C \uAC1C\uBC1C\uC744 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uC775\uC2A4\uD504\uB808\uC2A4(express)\uD658\uACBD\uC744 \uAD6C\uCD95\uD558\uC5EC \uC11C\uBC84\uB97C \uAD6C\uC131\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC77C\uB809\uD2B8\uB860(electron) \uD658\uACBD\uC744 \uAD6C\uCD95\uD558\uC5EC \uC560\uD50C\uB9AC\uCF00\uC774\uC158\uC744 \uAC1C\uBC1C\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uBAA8\uB378 1\uBC29\uC2DD\uC758 \uAC04\uB2E8\uD55C \uC6F9\uC0AC\uC774\uD2B8 \uAC1C\uBC1C\uC744 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uD50C\uB77C\uC2A4\uD06C\uB97C \uD65C\uC6A9\uD558\uC5EC \uAC04\uB2E8\uD55C \uC11C\uBC84\uB97C \uB9CC\uB4E4 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC778\uACF5\uC9C0\uB2A5\uC5D0 \uB300\uD55C \uAC1C\uB150\uC744 \uC775\uD788\uAE30 \uC704\uD574 \uC0AC\uC774\uD0B7\uB7F0, \uD150\uC11C\uD50C\uB85C\uC5D0 \uB300\uD574\uC11C \uB0AE\uC740 \uC218\uC900\uC758 \uC791\uC5C5\uC744 \uD574 \uBCF4\uC558\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uAD00\uACC4\uD615 \uB370\uC774\uD130\uBCA0\uC774\uC2A4\uC5D0 \uB300\uD574\uC11C CRUD \uAE30\uB2A5\uC744 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uBABD\uACE0db, redis\uC5D0 \uB300\uD574\uC11C \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>asterixdb \uBC0F influxdb\uB3C4 \uC775\uC219\uD558\uC9C0\uB294 \uC54A\uC9C0\uB9CC, \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uC548\uB4DC\uB85C\uC774\uB4DC \uC571 \uAC1C\uBC1C\uC740 \uD558\uC774\uBE0C\uB9AC\uB4DC \uD615\uC2DD\uC73C\uB85C \uAC1C\uBC1C\uC744 \uD558\uACE0 \uB9C8\uCF13\uC5D0 \uBC30\uD3EC\uD55C \uACBD\uD5D8\uC774 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC544\uC774\uD3F0 \uC571 \uAC1C\uBC1C\uC740 \uD558\uC774\uBE0C\uB9AC\uB4DC \uD615\uC2DD\uC73C\uB85C \uAC04\uB2E8\uD55C \uC720\uC9C0\uBCF4\uC218 \uC815\uB3C4\uB9CC \uD574\uBCF8 \uACBD\uD5D8\uC774 \uC788\uC2B5\uB2C8\uB2E4. </div>\n    ", "\n     <div>\uD615\uC0C1 \uAD00\uB9AC\uB294 git, github, svn\uC744 \uC0AC\uC6A9\uD558\uC600\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC6B4\uC601\uCCB4\uC81C\uB294 \uB9AC\uB205\uC2A4, \uC708\uB3C4\uC6B0 \uACC4\uC5F4\uC744 \uC8FC\uB85C \uC0AC\uC6A9\uD558\uC600\uC73C\uBA70 \uC720\uB2C9\uC2A4, \uB9E5\uC5D0 \uB300\uD55C \uACBD\uD5D8\uC740 \uC801\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC790\uB3D9 \uBC30\uD3EC \uBC0F \uBE4C\uB4DC \uB3C4\uAD6C\uB85C\uB294 \uACBD\uD5D8\uC774 \uC801\uC9C0\uB9CC \uC820\uD0A8\uC2A4\uB97C \uC0AC\uC6A9\uD574 \uBCF4\uC558\uC2B5\uB2C8\uB2E4.</div>\n    "];
 var stackArray = [{
-  img: './java.PNG',
+  img: 'java.PNG',
   name: 'Java',
   level: stars[0] + stars[0] + stars[0] + stars[0] + stars[1],
   desc: statckDesc[0]
 }, {
-  img: './javascript.PNG',
+  img: 'javascript.PNG',
   name: 'Javascript',
   level: stars[0] + stars[0] + stars[0] + stars[0] + stars[2],
   desc: statckDesc[1]
 }, {
-  img: './angular.PNG',
+  img: 'angular.PNG',
   name: 'Angular',
   level: stars[0] + stars[0] + stars[0] + stars[0] + stars[2],
   desc: statckDesc[2]
 }, {
-  img: './typescript.PNG',
+  img: 'typescript.PNG',
   name: 'Typescript',
   level: stars[0] + stars[0] + stars[0] + stars[0] + stars[2],
   desc: statckDesc[3]
 }, {
-  img: './node.PNG',
+  img: 'node.PNG',
   name: 'Node.js',
   level: stars[0] + stars[0] + stars[0] + stars[1] + stars[2],
   desc: statckDesc[4]
 }, {
-  img: './php.PNG',
+  img: 'php.PNG',
   name: 'php',
   level: stars[0] + stars[0] + stars[1] + stars[2] + stars[2],
   desc: statckDesc[5]
 }, {
-  img: './python.PNG',
+  img: 'python.PNG',
   name: 'Python',
   level: stars[0] + stars[0] + stars[2] + stars[2] + stars[2],
   desc: statckDesc[6]
 }, {
-  img: './db.PNG',
+  img: 'db.PNG',
   name: 'Database',
   level: stars[0] + stars[0] + stars[0] + stars[1] + stars[2],
   desc: statckDesc[7]
 }, {
-  img: './mobile.jpg',
+  img: 'mobile.jpg',
   name: 'Mobile',
   level: stars[0] + stars[0] + stars[2] + stars[2] + stars[2],
   desc: statckDesc[8]
 }, {
-  img: './etc.PNG',
+  img: 'etc.PNG',
   name: 'Etc',
   level: stars[0] + stars[0] + stars[0] + stars[2] + stars[2],
   desc: statckDesc[9]
@@ -125949,7 +125949,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62720" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62935" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
