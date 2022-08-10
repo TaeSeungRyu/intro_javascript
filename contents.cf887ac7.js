@@ -125923,9 +125923,15 @@ chartHistory.data = [{
 }, {
   "category": "준비",
   "start": "2022-03",
-  "end": new Date().yyyymm() + "",
+  "end": "2022-07",
   "color": colorSet.getIndex(14),
-  "task": "육아"
+  "task": "개인공부/육아(코로나)"
+}, {
+  "category": "근무",
+  "start": "2022-07",
+  "end": new Date().yyyymm() + "",
+  "color": colorSet.getIndex(23),
+  "task": "아이에스테크놀로지 근무(~개발차장)"
 }];
 chartHistory.dateFormatter.dateFormat = "yyyy-MM";
 chartHistory.dateFormatter.inputDateFormat = "yyyy-MM";
@@ -126215,7 +126221,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65257" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51953" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
