@@ -130,6 +130,7 @@ exports.__asyncValues = __asyncValues;
 exports.__await = __await;
 exports.__awaiter = __awaiter;
 exports.__classPrivateFieldGet = __classPrivateFieldGet;
+exports.__classPrivateFieldIn = __classPrivateFieldIn;
 exports.__classPrivateFieldSet = __classPrivateFieldSet;
 exports.__createBinding = void 0;
 exports.__decorate = __decorate;
@@ -148,7 +149,7 @@ exports.__spreadArray = __spreadArray;
 exports.__spreadArrays = __spreadArrays;
 exports.__values = __values;
 
-/*! *****************************************************************************
+/******************************************************************************
 Copyright (c) Microsoft Corporation.
 
 Permission to use, copy, modify, and/or distribute this software for any
@@ -375,12 +376,18 @@ function __generator(thisArg, body) {
 
 var __createBinding = Object.create ? function (o, m, k, k2) {
   if (k2 === undefined) k2 = k;
-  Object.defineProperty(o, k2, {
-    enumerable: true,
-    get: function () {
-      return m[k];
-    }
-  });
+  var desc = Object.getOwnPropertyDescriptor(m, k);
+
+  if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+    desc = {
+      enumerable: true,
+      get: function () {
+        return m[k];
+      }
+    };
+  }
+
+  Object.defineProperty(o, k2, desc);
 } : function (o, m, k, k2) {
   if (k2 === undefined) k2 = k;
   o[k2] = m[k];
@@ -602,6 +609,11 @@ function __classPrivateFieldSet(receiver, state, value, kind, f) {
   if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a setter");
   if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot write private member to an object whose class did not declare it");
   return kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value), value;
+}
+
+function __classPrivateFieldIn(state, receiver) {
+  if (receiver === null || typeof receiver !== "object" && typeof receiver !== "function") throw new TypeError("Cannot use 'in' operator on non-object");
+  return typeof state === "function" ? receiver === state : state.has(receiver);
 }
 },{}],"node_modules/@amcharts/amcharts4/.internal/core/utils/Percent.js":[function(require,module,exports) {
 "use strict";
@@ -11799,21 +11811,16 @@ function getYearDay(date, utc) {
  */
 
 
-function getWeek(date, utc) {
-  if (utc === void 0) {
-    utc = false;
+function getWeek(date, _utc) {
+  if (_utc === void 0) {
+    _utc = false;
   }
 
-  var day = getYearDay(date, utc) - 1;
-  var week = Math.floor((day - (date.getDay() || 7) + 10) / 7);
-
-  if (week === 0) {
-    week = 53;
-  } else if (week === 53) {
-    week = 1;
-  }
-
-  return week;
+  var d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  var day = d.getUTCDay() || 7;
+  d.setUTCDate(d.getUTCDate() + 4 - day);
+  var firstDay = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  return Math.ceil(((d.getTime() - firstDay.getTime()) / 86400000 + 1) / 7);
 }
 /**
  * Returns a week number in the month.
@@ -15730,6 +15737,16 @@ function (_super) {
         if (childNode && childNode.parentNode) {
           childNode.parentNode.removeChild(childNode);
         }
+      }
+    }
+  };
+
+  Group.prototype.removeChildrenByTag = function (tag) {
+    if (this.node.childNodes) {
+      var remove = this.node.getElementsByTagName(tag);
+
+      for (var i = 0; i < remove.length; i++) {
+        this.node.removeChild(remove[i]);
       }
     }
   };
@@ -37118,6 +37135,10 @@ function (_super) {
     if (source.strokeModifier) {
       this.strokeModifier = source.strokeModifier.clone();
     }
+
+    if (source.focusFilter) {
+      this.focusFilter = source.focusFilter.clone();
+    }
   };
   /**
    * Destroys this object and all related data.
@@ -40874,7 +40895,7 @@ function (_super) {
               "focusable": value
             });
 
-            if (!this._tabindex) {
+            if (!$type.hasValue(this._tabindex)) {
               this.tabindex = 0;
             }
           } else {
@@ -41082,12 +41103,7 @@ function (_super) {
           "tabindex": value
         });
         this._tabindex = value;
-
-        if (value > -1) {
-          this.focusable = true;
-        } else {
-          this.focusable = undefined;
-        }
+        this.focusable = true;
       }
     },
     enumerable: true,
@@ -48756,7 +48772,7 @@ function () {
    * @see {@link https://docs.npmjs.com/misc/semver}
    */
 
-  System.VERSION = "4.10.24";
+  System.VERSION = "4.10.27";
   return System;
 }();
 
@@ -50403,7 +50419,7 @@ function (_super) {
         _this.checkRules();
       }, this));
 
-      this._responsiveDisposers.push($type.getValue(this.component).events.on("datavalidated", function () {
+      this._responsiveDisposers.push($type.getValue(this.component).events.once("datavalidated", function () {
         if (_this._component.isReady()) {
           _this.checkRules(true);
         }
@@ -50567,7 +50583,12 @@ function (_super) {
 
 
     var rulesChanged = false;
-    var component = $type.getValue(this.component); // Check which rules match
+    var component = $type.getValue(this.component); // Do not perform rule application of target has no size
+
+    if (component.pixelWidth == 0 || component.pixelHeight == 0) {
+      return;
+    } // Check which rules match
+
 
     $iter.each(rules.iterator(), function (rule) {
       // Check if rule has an id
@@ -50600,14 +50621,27 @@ function (_super) {
         component.events.once("ready", function (ev) {
           ev.target.show(0);
 
-          _this.applyRules();
+          _this._applyRules();
         });
         return;
       }
 
       this.dispatchImmediately("ruleschanged");
-      this.applyRules();
+
+      this._applyRules();
     }
+  };
+
+  Responsive.prototype._applyRules = function () {
+    var _this = this;
+
+    if (this._timeout) {
+      this._timeout.dispose();
+    }
+
+    this._timeout = this.setTimeout(function () {
+      _this.applyRules();
+    }, 10);
   };
   /**
    * Applies current rules to the object.
@@ -53485,7 +53519,11 @@ function (_super) {
 
 
         if (1 / (end - start) > maxZoomFactor) {
-          start = end - 1 / maxZoomFactor;
+          if (start <= 0) {
+            end = start + 1 / maxZoomFactor;
+          } else {
+            start = end - 1 / maxZoomFactor;
+          }
         }
 
         if (start < 0 && end - start < 1 / maxZoomFactor) {
@@ -54611,7 +54649,8 @@ function (_super) {
        */
       this.element.removeAttr("display"); // Clear the element
 
-      var group = this.element;
+      var group = this.element; //group.removeChildren();
+
       this.resetBBox(); // Init state variables
 
       var currentHeight = 0;
@@ -54989,7 +55028,8 @@ function (_super) {
       this.resetBBox(); // Clear the element
 
       var group = this.element;
-      group.removeChildren(); // Create a ForeignObject to use as HTML container
+      group.removeChildren();
+      this.setCache("lineInfo", [], 0); // Create a ForeignObject to use as HTML container
 
       var fo = this.paper.foreignObject();
       group.add(fo); // Set widths on foreignObject so that autosizing measurements work
@@ -55665,10 +55705,33 @@ function (_super) {
      */
     set: function (value) {
       this.setPropertyValue("html", value, true);
+
+      if (!$type.hasValue(value)) {
+        var group = this.element;
+        group.removeChildrenByTag("foreignObject");
+      }
     },
     enumerable: true,
     configurable: true
   });
+
+  Label.prototype.setFill = function (value) {
+    _super.prototype.setFill.call(this, value);
+
+    if (this.html) {
+      var group = this.element;
+      var divs = group.node.getElementsByTagName("div");
+
+      for (var i = 0; i < divs.length; i++) {
+        var div = divs[i];
+
+        if ($type.hasValue(this.fill)) {
+          div.style.color = this.fill.toString();
+        }
+      }
+    }
+  };
+
   Object.defineProperty(Label.prototype, "hideOversized", {
     /**
      * @return Hide if text does not fit?
@@ -101211,6 +101274,14 @@ function (_super) {
 
           child.defaultState.properties.stroke = slice.stroke;
         }
+
+        if (ev.property == "strokeOpacity") {
+          if (!child.isActive) {
+            child.strokeOpacity = slice.strokeOpacity;
+          }
+
+          child.defaultState.properties.strokeOpacity = slice.strokeOpacity;
+        }
       }, undefined, false));
     });
   };
@@ -125659,7 +125730,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }, 250);
 });
 var stars = ['<i class="fas fa-star" style="color : #d7d770"></i>', '<i class="fas fa-star-half-alt" style="color : #999945"></i>', '<i class="far fa-star" style="color : gray"></i>'];
-var statckDesc = ["\n     <div>\uC790\uBC14\uB294 11\uBC84\uC804\uAE4C\uC9C0 \uC0AC\uC6A9\uD574 \uBCF4\uC558\uC2B5\uB2C8\uB2E4. \uB78C\uB2E4\uC640 \uD568\uC218\uD615, stream\uC744 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC2A4\uD504\uB9C1, \uC2A4\uD504\uB9C1\uBD80\uD2B8, \uC804\uC790\uC815\uBD80, \uC2A4\uD2B8\uB7FF\uCE20 \uBC0F \uC6F9\uD50C\uB7ED\uC2A4 \uD504\uB808\uC784\uC6CC\uD06C\uB97C \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>Mybatis \uBC0F JPA \uBC29\uC2DD\uC758 \uB370\uC774\uD130\uBCA0\uC774\uC2A4 \uD504\uB808\uC784\uC6CC\uD06C\uB97C \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>ECMA\uC5D0 \uB300\uD574\uC11C \uAC1C\uB150\uC744 \uAC00\uC9C0\uACE0 \uC791\uC5C5\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4. </div>\n     <div>\uC5EC\uB7EC GIS\uC640 \uAD00\uB828\uB41C \uC791\uC5C5\uC744 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.(\uC624\uD508\uB808\uC774\uC5B4\uC2A4, \uCE74\uCE74\uC624\uD1A1\uB9F5 \uB4F1)</div>\n    ", "\n     <div>\uC575\uADE4\uB7EC \uBC84\uC804 2.0 \uC774\uC0C1\uBD80\uD130 \uB2E4\uB8F0 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uD30C\uC774\uC5B4\uBCA0\uC774\uC2A4\uC640 \uC5F0\uB3D9\uC744 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>RXJS\uB97C \uD65C\uC6A9\uD558\uC5EC \uAD6C\uB3C5\uAD00\uACC4\uB97C \uD1B5\uD55C \uB370\uC774\uD130 \uACF5\uC720\uB97C \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uD30C\uC140(\uB610\uB294 \uC6F9\uD329)\uD658\uACBD\uC744 \uAD6C\uCD95\uD558\uC5EC \uAC1C\uBC1C\uC744 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4. </div>\n     <div>\uD504\uB85D\uC2DC \uC124\uC815\uC744 \uD1B5\uD574 REST-API\uD615\uC2DD\uC73C\uB85C \uAC1C\uBC1C\uC744 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uC775\uC2A4\uD504\uB808\uC2A4(express)\uD658\uACBD\uC744 \uAD6C\uCD95\uD558\uC5EC \uC11C\uBC84\uB97C \uAD6C\uC131\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC77C\uB809\uD2B8\uB860(electron) \uD658\uACBD\uC744 \uAD6C\uCD95\uD558\uC5EC \uC560\uD50C\uB9AC\uCF00\uC774\uC158\uC744 \uAC1C\uBC1C\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uBAA8\uB378 1\uBC29\uC2DD\uC758 \uAC04\uB2E8\uD55C \uC6F9\uC0AC\uC774\uD2B8 \uAC1C\uBC1C\uC744 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uD50C\uB77C\uC2A4\uD06C\uB97C \uD65C\uC6A9\uD558\uC5EC \uAC04\uB2E8\uD55C \uC11C\uBC84\uB97C \uB9CC\uB4E4 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC778\uACF5\uC9C0\uB2A5\uC5D0 \uB300\uD55C \uAC1C\uB150\uC744 \uC775\uD788\uAE30 \uC704\uD574 \uC0AC\uC774\uD0B7\uB7F0, \uD150\uC11C\uD50C\uB85C\uC5D0 \uB300\uD574\uC11C \uB0AE\uC740 \uC218\uC900\uC758 \uC791\uC5C5\uC744 \uD574 \uBCF4\uC558\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uAD00\uACC4\uD615 \uB370\uC774\uD130\uBCA0\uC774\uC2A4\uC5D0 \uB300\uD574\uC11C CRUD \uAE30\uB2A5\uC744 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uBABD\uACE0db, redis\uC5D0 \uB300\uD574\uC11C \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>asterixdb \uBC0F influxdb\uB3C4 \uC775\uC219\uD558\uC9C0\uB294 \uC54A\uC9C0\uB9CC, \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uC548\uB4DC\uB85C\uC774\uB4DC \uC571 \uAC1C\uBC1C\uC740 \uD558\uC774\uBE0C\uB9AC\uB4DC \uD615\uC2DD\uC73C\uB85C \uAC1C\uBC1C\uC744 \uD558\uACE0 \uB9C8\uCF13\uC5D0 \uBC30\uD3EC\uD55C \uACBD\uD5D8\uC774 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC544\uC774\uD3F0 \uC571 \uAC1C\uBC1C\uC740 \uD558\uC774\uBE0C\uB9AC\uB4DC \uD615\uC2DD\uC73C\uB85C \uAC04\uB2E8\uD55C \uC720\uC9C0\uBCF4\uC218 \uC815\uB3C4\uB9CC \uD574\uBCF8 \uACBD\uD5D8\uC774 \uC788\uC2B5\uB2C8\uB2E4. </div>\n    ", "\n     <div>\uD615\uC0C1 \uAD00\uB9AC\uB294 git, github, svn\uC744 \uC0AC\uC6A9\uD558\uC600\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC6B4\uC601\uCCB4\uC81C\uB294 \uB9AC\uB205\uC2A4, \uC708\uB3C4\uC6B0 \uACC4\uC5F4\uC744 \uC8FC\uB85C \uC0AC\uC6A9\uD558\uC600\uC73C\uBA70 \uC720\uB2C9\uC2A4, \uB9E5\uC5D0 \uB300\uD55C \uACBD\uD5D8\uC740 \uC801\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC790\uB3D9 \uBC30\uD3EC \uBC0F \uBE4C\uB4DC \uB3C4\uAD6C\uB85C\uB294 \uACBD\uD5D8\uC774 \uC801\uC9C0\uB9CC \uC820\uD0A8\uC2A4\uB97C \uC0AC\uC6A9\uD574 \uBCF4\uC558\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uB9AC\uC5D1\uD2B8\uB294 \uD1A0\uC774\uD504\uB85C\uC81D\uD2B8\uB85C \uC5EC\uB7EC\uBC88 \uD574 \uBCF4\uC558\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uD074\uB798\uC2A4\uD615\uD0DC, \uD568\uC218\uD615 \uD615\uD0DC\uB97C \uBAA8\uB450 \uACBD\uD5D8\uD558\uC5EC \uBCF4\uC558\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC0C1\uD0DC\uAD00\uB9AC\uB294 \uBAA8\uBE45\uC2A4\uC640 \uB808\uB355\uC2A4\uB97C \uC0AC\uC6A9 \uD574 \uBCF4\uC558\uC2B5\uB2C8\uB2E4</div>\n    "];
+var statckDesc = ["\n     <div>\uC790\uBC14\uB294 13\uBC84\uC804\uAE4C\uC9C0 \uC0AC\uC6A9\uD574 \uBCF4\uC558\uC2B5\uB2C8\uB2E4. \uB78C\uB2E4\uC640 \uD568\uC218\uD615, stream\uC744 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC2A4\uD504\uB9C1, \uC2A4\uD504\uB9C1\uBD80\uD2B8, \uC804\uC790\uC815\uBD80, \uC2A4\uD2B8\uB7FF\uCE20 \uBC0F \uC6F9\uD50C\uB7ED\uC2A4 \uD504\uB808\uC784\uC6CC\uD06C\uB97C \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>Mybatis \uBC0F JPA \uBC29\uC2DD\uC758 \uB370\uC774\uD130\uBCA0\uC774\uC2A4 \uD504\uB808\uC784\uC6CC\uD06C\uB97C \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>ECMA\uC5D0 \uB300\uD574\uC11C \uAC1C\uB150\uC744 \uAC00\uC9C0\uACE0 \uC791\uC5C5\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4. </div>\n     <div>\uC5EC\uB7EC GIS\uC640 \uAD00\uB828\uB41C \uC791\uC5C5\uC744 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.(\uC624\uD508\uB808\uC774\uC5B4\uC2A4, \uCE74\uCE74\uC624\uD1A1\uB9F5 \uB4F1)</div>\n    ", "\n     <div>\uC575\uADE4\uB7EC \uBC84\uC804 2.0 \uC774\uC0C1\uBD80\uD130 \uB2E4\uB8F0 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uD30C\uC774\uC5B4\uBCA0\uC774\uC2A4\uC640 \uC5F0\uB3D9\uC744 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>RXJS\uB97C \uD65C\uC6A9\uD558\uC5EC \uAD6C\uB3C5\uAD00\uACC4\uB97C \uD1B5\uD55C \uB370\uC774\uD130 \uACF5\uC720\uB97C \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uD30C\uC140(\uB610\uB294 \uC6F9\uD329)\uD658\uACBD\uC744 \uAD6C\uCD95\uD558\uC5EC \uAC1C\uBC1C\uC744 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4. </div>\n     <div>\uD504\uB85D\uC2DC \uC124\uC815\uC744 \uD1B5\uD574 REST-API\uD615\uC2DD\uC73C\uB85C \uAC1C\uBC1C\uC744 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uC775\uC2A4\uD504\uB808\uC2A4(express), Nestjs \uD658\uACBD\uC744 \uAD6C\uCD95\uD558\uC5EC \uC11C\uBC84\uB97C \uAD6C\uC131\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC77C\uB809\uD2B8\uB860(electron) \uD658\uACBD\uC744 \uAD6C\uCD95\uD558\uC5EC \uC5B4\uD50C\uB9AC\uCF00\uC774\uC158\uC744 \uAC1C\uBC1C\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uBAA8\uB378 1\uBC29\uC2DD\uC758 \uAC04\uB2E8\uD55C \uC6F9\uC0AC\uC774\uD2B8 \uAC1C\uBC1C\uC744 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uD50C\uB77C\uC2A4\uD06C\uB97C \uD65C\uC6A9\uD558\uC5EC \uAC04\uB2E8\uD55C \uC11C\uBC84\uB97C \uB9CC\uB4E4 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC778\uACF5\uC9C0\uB2A5\uC5D0 \uB300\uD55C \uAC1C\uB150\uC744 \uC775\uD788\uAE30 \uC704\uD574 \uC0AC\uC774\uD0B7\uB7F0, \uD150\uC11C\uD50C\uB85C\uC5D0 \uB300\uD574\uC11C \uB0AE\uC740 \uC218\uC900\uC758 \uC791\uC5C5\uC744 \uD574 \uBCF4\uC558\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uAD00\uACC4\uD615 \uB370\uC774\uD130\uBCA0\uC774\uC2A4\uC5D0 \uB300\uD574\uC11C CRUD \uAE30\uB2A5\uC744 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uBABD\uACE0db, redis\uC5D0 \uB300\uD574\uC11C \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>asterixdb \uBC0F influxdb\uB3C4 \uC775\uC219\uD558\uC9C0\uB294 \uC54A\uC9C0\uB9CC, \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uC548\uB4DC\uB85C\uC774\uB4DC \uC571 \uAC1C\uBC1C\uC740 \uD558\uC774\uBE0C\uB9AC\uB4DC \uD615\uC2DD\uC73C\uB85C \uAC1C\uBC1C\uC744 \uD558\uACE0 \uB9C8\uCF13\uC5D0 \uBC30\uD3EC\uD55C \uACBD\uD5D8\uC774 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC544\uC774\uD3F0 \uC571 \uAC1C\uBC1C\uC740 \uD558\uC774\uBE0C\uB9AC\uB4DC \uD615\uC2DD\uC73C\uB85C \uAC04\uB2E8\uD55C \uC720\uC9C0\uBCF4\uC218 \uC815\uB3C4\uB9CC \uD574\uBCF8 \uACBD\uD5D8\uC774 \uC788\uC2B5\uB2C8\uB2E4. </div>\n     <div>\uB9AC\uC5D1\uD2B8\uB124\uC774\uD2F0\uBE0C\uB97C \uC2DC\uAC04 \uB0A0 \uB54C \uC870\uAE08\uC529 \uC5F0\uC2B5\uD574 \uBCF4\uACE0 \uC788\uC2B5\uB2C8\uB2E4. </div>\n    ", "\n     <div>\uD615\uC0C1 \uAD00\uB9AC\uB294 git, github, svn\uC744 \uC0AC\uC6A9\uD558\uC600\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC6B4\uC601\uCCB4\uC81C\uB294 \uB9AC\uB205\uC2A4, \uC708\uB3C4\uC6B0 \uACC4\uC5F4\uC744 \uC8FC\uB85C \uC0AC\uC6A9\uD558\uC600\uC73C\uBA70 \uC720\uB2C9\uC2A4, \uB9E5\uC5D0 \uB300\uD55C \uACBD\uD5D8\uC740 \uC801\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC790\uB3D9 \uBC30\uD3EC \uBC0F \uBE4C\uB4DC \uB3C4\uAD6C\uB85C\uB294 \uACBD\uD5D8\uC774 \uC801\uC9C0\uB9CC \uC820\uD0A8\uC2A4\uB97C \uC0AC\uC6A9\uD574 \uBCF4\uC558\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uB9AC\uC5D1\uD2B8\uB294 \uD1A0\uC774\uD504\uB85C\uC81D\uD2B8\uB85C \uC5EC\uB7EC\uBC88 \uD574 \uBCF4\uC558\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uD074\uB798\uC2A4\uD615\uD0DC, \uD568\uC218\uD615 \uD615\uD0DC\uB97C \uBAA8\uB450 \uACBD\uD5D8\uD558\uC5EC \uBCF4\uC558\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC0C1\uD0DC\uAD00\uB9AC\uB294 \uBAA8\uBE45\uC2A4\uC640 \uB808\uB355\uC2A4\uB97C \uC0AC\uC6A9 \uD574 \uBCF4\uC558\uC2B5\uB2C8\uB2E4</div>\n    "];
 var stackArray = [{
   img: './java.PNG',
   name: 'Java',
@@ -125678,7 +125749,7 @@ var stackArray = [{
 }, {
   img: './react.PNG',
   name: 'React',
-  level: stars[0] + stars[0] + stars[0] + stars[2] + stars[2],
+  level: stars[0] + stars[0] + stars[0] + stars[1] + stars[2],
   desc: statckDesc[10]
 }, {
   img: './typescript.PNG',
@@ -126221,7 +126292,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51953" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55236" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
