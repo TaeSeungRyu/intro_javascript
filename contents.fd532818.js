@@ -125721,79 +125721,84 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 Date.prototype.yyyymm = function () {
   var mm = this.getMonth() + 1;
-  return [this.getFullYear(), (mm > 9 ? '' : '0') + mm].join('-');
+  return [this.getFullYear(), (mm > 9 ? "" : "0") + mm].join("-");
 };
 
 document.addEventListener("DOMContentLoaded", function () {
   setTimeout(function () {
-    $('#imBody').fadeIn();
+    $("#imBody").fadeIn();
   }, 250);
 });
 var stars = ['<i class="fas fa-star" style="color : #d7d770"></i>', '<i class="fas fa-star-half-alt" style="color : #999945"></i>', '<i class="far fa-star" style="color : gray"></i>'];
-var statckDesc = ["\n     <div>\uC790\uBC14\uB294 13\uBC84\uC804\uAE4C\uC9C0 \uC0AC\uC6A9\uD574 \uBCF4\uC558\uC2B5\uB2C8\uB2E4. \uB78C\uB2E4\uC640 \uD568\uC218\uD615, stream\uC744 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC2A4\uD504\uB9C1, \uC2A4\uD504\uB9C1\uBD80\uD2B8, \uC804\uC790\uC815\uBD80, \uC2A4\uD2B8\uB7FF\uCE20 \uBC0F \uC6F9\uD50C\uB7ED\uC2A4 \uD504\uB808\uC784\uC6CC\uD06C\uB97C \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>Mybatis \uBC0F JPA \uBC29\uC2DD\uC758 \uB370\uC774\uD130\uBCA0\uC774\uC2A4 \uD504\uB808\uC784\uC6CC\uD06C\uB97C \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>ECMA\uC5D0 \uB300\uD574\uC11C \uAC1C\uB150\uC744 \uAC00\uC9C0\uACE0 \uC791\uC5C5\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4. </div>\n     <div>\uC5EC\uB7EC GIS\uC640 \uAD00\uB828\uB41C \uC791\uC5C5\uC744 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.(\uC624\uD508\uB808\uC774\uC5B4\uC2A4, \uCE74\uCE74\uC624\uD1A1\uB9F5 \uB4F1)</div>\n    ", "\n     <div>\uC575\uADE4\uB7EC \uBC84\uC804 2.0 \uC774\uC0C1\uBD80\uD130 \uB2E4\uB8F0 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uD30C\uC774\uC5B4\uBCA0\uC774\uC2A4\uC640 \uC5F0\uB3D9\uC744 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>RXJS\uB97C \uD65C\uC6A9\uD558\uC5EC \uAD6C\uB3C5\uAD00\uACC4\uB97C \uD1B5\uD55C \uB370\uC774\uD130 \uACF5\uC720\uB97C \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uD30C\uC140(\uB610\uB294 \uC6F9\uD329)\uD658\uACBD\uC744 \uAD6C\uCD95\uD558\uC5EC \uAC1C\uBC1C\uC744 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4. </div>\n     <div>\uD504\uB85D\uC2DC \uC124\uC815\uC744 \uD1B5\uD574 REST-API\uD615\uC2DD\uC73C\uB85C \uAC1C\uBC1C\uC744 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uC775\uC2A4\uD504\uB808\uC2A4(express), Nestjs \uD658\uACBD\uC744 \uAD6C\uCD95\uD558\uC5EC \uC11C\uBC84\uB97C \uAD6C\uC131\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC77C\uB809\uD2B8\uB860(electron) \uD658\uACBD\uC744 \uAD6C\uCD95\uD558\uC5EC \uC5B4\uD50C\uB9AC\uCF00\uC774\uC158\uC744 \uAC1C\uBC1C\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uBAA8\uB378 1\uBC29\uC2DD\uC758 \uAC04\uB2E8\uD55C \uC6F9\uC0AC\uC774\uD2B8 \uAC1C\uBC1C\uC744 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uD50C\uB77C\uC2A4\uD06C\uB97C \uD65C\uC6A9\uD558\uC5EC \uAC04\uB2E8\uD55C \uC11C\uBC84\uB97C \uB9CC\uB4E4 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC778\uACF5\uC9C0\uB2A5\uC5D0 \uB300\uD55C \uAC1C\uB150\uC744 \uC775\uD788\uAE30 \uC704\uD574 \uC0AC\uC774\uD0B7\uB7F0, \uD150\uC11C\uD50C\uB85C\uC5D0 \uB300\uD574\uC11C \uB0AE\uC740 \uC218\uC900\uC758 \uC791\uC5C5\uC744 \uD574 \uBCF4\uC558\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uAD00\uACC4\uD615 \uB370\uC774\uD130\uBCA0\uC774\uC2A4\uC5D0 \uB300\uD574\uC11C CRUD \uAE30\uB2A5\uC744 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uBABD\uACE0db, redis\uC5D0 \uB300\uD574\uC11C \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>asterixdb \uBC0F influxdb\uB3C4 \uC775\uC219\uD558\uC9C0\uB294 \uC54A\uC9C0\uB9CC, \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uC548\uB4DC\uB85C\uC774\uB4DC \uC571 \uAC1C\uBC1C\uC740 \uD558\uC774\uBE0C\uB9AC\uB4DC \uD615\uC2DD\uC73C\uB85C \uAC1C\uBC1C\uC744 \uD558\uACE0 \uB9C8\uCF13\uC5D0 \uBC30\uD3EC\uD55C \uACBD\uD5D8\uC774 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC544\uC774\uD3F0 \uC571 \uAC1C\uBC1C\uC740 \uD558\uC774\uBE0C\uB9AC\uB4DC \uD615\uC2DD\uC73C\uB85C \uAC04\uB2E8\uD55C \uC720\uC9C0\uBCF4\uC218 \uC815\uB3C4\uB9CC \uD574\uBCF8 \uACBD\uD5D8\uC774 \uC788\uC2B5\uB2C8\uB2E4. </div>\n     <div>\uB9AC\uC5D1\uD2B8\uB124\uC774\uD2F0\uBE0C\uB97C \uC2DC\uAC04 \uB0A0 \uB54C \uC870\uAE08\uC529 \uC5F0\uC2B5\uD574 \uBCF4\uACE0 \uC788\uC2B5\uB2C8\uB2E4. </div>\n    ", "\n     <div>\uD615\uC0C1 \uAD00\uB9AC\uB294 git, github, svn\uC744 \uC0AC\uC6A9\uD558\uC600\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC6B4\uC601\uCCB4\uC81C\uB294 \uB9AC\uB205\uC2A4, \uC708\uB3C4\uC6B0 \uACC4\uC5F4\uC744 \uC8FC\uB85C \uC0AC\uC6A9\uD558\uC600\uC73C\uBA70 \uC720\uB2C9\uC2A4, \uB9E5\uC5D0 \uB300\uD55C \uACBD\uD5D8\uC740 \uC801\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC790\uB3D9 \uBC30\uD3EC \uBC0F \uBE4C\uB4DC \uB3C4\uAD6C\uB85C\uB294 \uACBD\uD5D8\uC774 \uC801\uC9C0\uB9CC \uC820\uD0A8\uC2A4\uB97C \uC0AC\uC6A9\uD574 \uBCF4\uC558\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uB9AC\uC5D1\uD2B8\uB294 \uC575\uADE4\uB7EC\uB97C \uC811\uD558\uACE0 \uB09C \uB4A4 21\uB144\uB3C4\uBD80\uD130 \uB2E4\uB8E8\uC5B4 \uBCF4\uC558\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uD074\uB798\uC2A4\uD615\uD0DC, \uD568\uC218\uD615 \uD615\uD0DC\uB97C \uBAA8\uB450 \uACBD\uD5D8\uD558\uC5EC \uBCF4\uC558\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC0C1\uD0DC\uAD00\uB9AC\uB294 \uBAA8\uBE45\uC2A4\uC640 \uB808\uB355\uC2A4\uB97C \uC0AC\uC6A9 \uD574 \uBCF4\uC558\uC2B5\uB2C8\uB2E4</div>\n    "];
+var statckDesc = ["\n     <div>\uC790\uBC14\uB294 13\uBC84\uC804\uAE4C\uC9C0 \uC0AC\uC6A9\uD574 \uBCF4\uC558\uC2B5\uB2C8\uB2E4. \uB78C\uB2E4\uC640 \uD568\uC218\uD615, stream\uC744 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC2A4\uD504\uB9C1, \uC2A4\uD504\uB9C1\uBD80\uD2B8, \uC804\uC790\uC815\uBD80, \uC2A4\uD2B8\uB7FF\uCE20 \uBC0F \uC6F9\uD50C\uB7ED\uC2A4 \uD504\uB808\uC784\uC6CC\uD06C\uB97C \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>Mybatis \uBC0F JPA \uBC29\uC2DD\uC758 \uB370\uC774\uD130\uBCA0\uC774\uC2A4 \uD504\uB808\uC784\uC6CC\uD06C\uB97C \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div> \n    ", "\n     <div>ECMA\uC5D0 \uB300\uD574\uC11C \uAC1C\uB150\uC744 \uAC00\uC9C0\uACE0 \uC791\uC5C5\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4. </div>\n     <div>\uC5EC\uB7EC GIS\uC640 \uAD00\uB828\uB41C \uC791\uC5C5\uC744 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.(\uC624\uD508\uB808\uC774\uC5B4\uC2A4, \uCE74\uCE74\uC624\uD1A1\uB9F5 \uB4F1)</div>\n    ", "\n     <div>\uC575\uADE4\uB7EC \uBC84\uC804 2.0 \uC774\uC0C1\uBD80\uD130 \uB2E4\uB8F0 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uD30C\uC774\uC5B4\uBCA0\uC774\uC2A4\uC640 \uC5F0\uB3D9\uC744 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>RXJS\uB97C \uD65C\uC6A9\uD558\uC5EC \uAD6C\uB3C5\uAD00\uACC4\uB97C \uD1B5\uD55C \uB370\uC774\uD130 \uACF5\uC720\uB97C \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uD30C\uC140(\uB610\uB294 \uC6F9\uD329)\uD658\uACBD\uC744 \uAD6C\uCD95\uD558\uC5EC \uAC1C\uBC1C\uC744 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4. </div>\n     <div>\uD504\uB85D\uC2DC \uC124\uC815\uC744 \uD1B5\uD574 REST-API\uD615\uC2DD\uC73C\uB85C \uAC1C\uBC1C\uC744 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uC775\uC2A4\uD504\uB808\uC2A4(express), Nestjs \uD658\uACBD\uC744 \uAD6C\uCD95\uD558\uC5EC \uC11C\uBC84\uB97C \uAD6C\uC131\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC77C\uB809\uD2B8\uB860(electron) \uD658\uACBD\uC744 \uAD6C\uCD95\uD558\uC5EC \uC5B4\uD50C\uB9AC\uCF00\uC774\uC158\uC744 \uAC1C\uBC1C\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uBAA8\uB378 1\uBC29\uC2DD\uC758 \uAC04\uB2E8\uD55C \uC6F9\uC0AC\uC774\uD2B8 \uAC1C\uBC1C\uC744 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uD50C\uB77C\uC2A4\uD06C\uB97C \uD65C\uC6A9\uD558\uC5EC \uAC04\uB2E8\uD55C \uC11C\uBC84\uB97C \uB9CC\uB4E4 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC778\uACF5\uC9C0\uB2A5\uC5D0 \uB300\uD55C \uAC1C\uB150\uC744 \uC775\uD788\uAE30 \uC704\uD574 \uC0AC\uC774\uD0B7\uB7F0, \uD150\uC11C\uD50C\uB85C\uC5D0 \uB300\uD574\uC11C \uB0AE\uC740 \uC218\uC900\uC758 \uC791\uC5C5\uC744 \uD574 \uBCF4\uC558\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uAD00\uACC4\uD615 \uB370\uC774\uD130\uBCA0\uC774\uC2A4\uC5D0 \uB300\uD574\uC11C CRUD \uAE30\uB2A5\uC744 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uBABD\uACE0db, redis\uC5D0 \uB300\uD574\uC11C \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>asterixdb \uBC0F influxdb\uB3C4 \uC775\uC219\uD558\uC9C0\uB294 \uC54A\uC9C0\uB9CC, \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uC548\uB4DC\uB85C\uC774\uB4DC \uC571 \uAC1C\uBC1C\uC740 \uD558\uC774\uBE0C\uB9AC\uB4DC \uD615\uC2DD\uC73C\uB85C \uAC1C\uBC1C\uC744 \uD558\uACE0 \uB9C8\uCF13\uC5D0 \uBC30\uD3EC\uD55C \uACBD\uD5D8\uC774 \uC788\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC544\uC774\uD3F0 \uC571 \uAC1C\uBC1C\uC740 \uD558\uC774\uBE0C\uB9AC\uB4DC \uD615\uC2DD\uC73C\uB85C \uAC04\uB2E8\uD55C \uC720\uC9C0\uBCF4\uC218 \uC815\uB3C4\uB9CC \uD574\uBCF8 \uACBD\uD5D8\uC774 \uC788\uC2B5\uB2C8\uB2E4. </div>\n     <div>\uB9AC\uC5D1\uD2B8\uB124\uC774\uD2F0\uBE0C\uB97C \uC2DC\uAC04 \uB0A0 \uB54C \uC870\uAE08\uC529 \uC5F0\uC2B5\uD574 \uBCF4\uACE0 \uC788\uC2B5\uB2C8\uB2E4. </div>\n    ", "\n     <div>\uD615\uC0C1 \uAD00\uB9AC\uB294 git, github, svn\uC744 \uC0AC\uC6A9\uD558\uC600\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC6B4\uC601\uCCB4\uC81C\uB294 \uB9AC\uB205\uC2A4, \uC708\uB3C4\uC6B0 \uACC4\uC5F4\uC744 \uC8FC\uB85C \uC0AC\uC6A9\uD558\uC600\uC73C\uBA70 \uC720\uB2C9\uC2A4, \uB9E5\uC5D0 \uB300\uD55C \uACBD\uD5D8\uC740 \uC801\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC790\uB3D9 \uBC30\uD3EC \uBC0F \uBE4C\uB4DC \uB3C4\uAD6C\uB85C\uB294 \uACBD\uD5D8\uC774 \uC801\uC9C0\uB9CC \uC820\uD0A8\uC2A4\uB97C \uC0AC\uC6A9\uD574 \uBCF4\uC558\uC2B5\uB2C8\uB2E4.</div>\n    ", "\n     <div>\uB9AC\uC5D1\uD2B8\uB294 \uC575\uADE4\uB7EC\uB97C \uC811\uD558\uACE0 \uB09C \uB4A4 21\uB144\uB3C4\uBD80\uD130 \uB2E4\uB8E8\uC5B4 \uBCF4\uC558\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uD074\uB798\uC2A4\uD615\uD0DC, \uD568\uC218\uD615 \uD615\uD0DC\uB97C \uBAA8\uB450 \uACBD\uD5D8\uD558\uC5EC \uBCF4\uC558\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uC0C1\uD0DC\uAD00\uB9AC\uB294 \uBAA8\uBE45\uC2A4\uC640 \uB808\uB355\uC2A4\uB97C \uC0AC\uC6A9 \uD574 \uBCF4\uC558\uC2B5\uB2C8\uB2E4</div>\n    ", "\n     <div>23\uB144\uB3C4\uBD80\uD130 Vuejs\uB97C \uD65C\uC6A9\uD558\uC5EC \uD654\uBA74 \uAC1C\uBC1C\uC744 \uD558\uC600\uC2B5\uB2C8\uB2E4.</div>\n     <div>\uCEF4\uD3EC\uC9C0\uC158 \uD615\uD0DC\uC758 \uAD6C\uC870\uB97C \uC0AC\uC6A9 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.</div>\n    "];
 var stackArray = [{
-  img: './java.PNG',
-  name: 'Java',
+  img: "./java.PNG",
+  name: "Java",
   level: stars[0] + stars[0] + stars[0] + stars[0] + stars[1],
   desc: statckDesc[0]
 }, {
-  img: './javascript.PNG',
-  name: 'Javascript',
+  img: "./javascript.PNG",
+  name: "Javascript",
   level: stars[0] + stars[0] + stars[0] + stars[0] + stars[2],
   desc: statckDesc[1]
 }, {
-  img: './angular.PNG',
-  name: 'Angular',
+  img: "./angular.PNG",
+  name: "Angular",
   level: stars[0] + stars[0] + stars[0] + stars[0] + stars[2],
   desc: statckDesc[2]
 }, {
-  img: './react.PNG',
-  name: 'React',
+  img: "./react.PNG",
+  name: "React",
   level: stars[0] + stars[0] + stars[0] + stars[1] + stars[2],
   desc: statckDesc[10]
 }, {
-  img: './typescript.PNG',
-  name: 'Typescript',
+  img: "./Vue.png",
+  name: "Vue",
+  level: stars[0] + stars[0] + stars[0] + stars[0] + stars[1],
+  desc: statckDesc[11]
+}, {
+  img: "./typescript.PNG",
+  name: "Typescript",
   level: stars[0] + stars[0] + stars[0] + stars[0] + stars[2],
   desc: statckDesc[3]
 }, {
-  img: './node.PNG',
-  name: 'Node.js',
+  img: "./node.PNG",
+  name: "Node.js",
   level: stars[0] + stars[0] + stars[0] + stars[1] + stars[2],
   desc: statckDesc[4]
 }, {
-  img: './php.PNG',
-  name: 'php',
+  img: "./php.PNG",
+  name: "php",
   level: stars[0] + stars[0] + stars[1] + stars[2] + stars[2],
   desc: statckDesc[5]
 }, {
-  img: './python.PNG',
-  name: 'Python',
+  img: "./python.PNG",
+  name: "Python",
   level: stars[0] + stars[0] + stars[2] + stars[2] + stars[2],
   desc: statckDesc[6]
 }, {
-  img: './db.PNG',
-  name: 'Database',
+  img: "./db.PNG",
+  name: "Database",
   level: stars[0] + stars[0] + stars[0] + stars[1] + stars[2],
   desc: statckDesc[7]
 }, {
-  img: './mobile.jpg',
-  name: 'Mobile',
+  img: "./mobile.jpg",
+  name: "Mobile",
   level: stars[0] + stars[0] + stars[2] + stars[2] + stars[2],
   desc: statckDesc[8]
 }, {
-  img: './etc.PNG',
-  name: 'Etc',
+  img: "./etc.PNG",
+  name: "Etc",
   level: stars[0] + stars[0] + stars[0] + stars[2] + stars[2],
   desc: statckDesc[9]
 }];
 stackArray.forEach(function (data, idx) {
-  var tr = $('<tr>').addClass('vr-md');
-  tr.append($('<td>').text(idx + 1), $('<td>').append($('<img>').attr({
+  var tr = $("<tr>").addClass("vr-md");
+  tr.append($("<td>").text(idx + 1), $("<td>").append($("<img>").attr({
     src: data.img,
-    class: 'img-rounder'
-  })), $('<td>').text(data.name), $('<td>').append(data.desc), $('<td>').append(data.level));
-  $('#stack').append(tr);
+    class: "img-rounder"
+  })), $("<td>").text(data.name), $("<td>").append(data.desc), $("<td>").append(data.level));
+  $("#stack").append(tr);
 });
 
 /* Chart code */
@@ -125805,29 +125810,29 @@ var chart = am4core.create("chartdiv", am4charts.SlicedChart);
 chart.hiddenState.properties.opacity = 0; // this makes initial fade in effect
 
 chart.data = [{
-  "name": "노력",
-  "value": 500,
-  "color": 'white'
+  name: "노력",
+  value: 500,
+  color: "white"
 }, {
-  "name": "경청",
-  "value": 250,
-  "color": 'white'
+  name: "경청",
+  value: 250,
+  color: "white"
 }, {
-  "name": "집중",
-  "value": 200,
-  "color": 'white'
+  name: "집중",
+  value: 200,
+  color: "white"
 }, {
-  "name": "대화",
-  "value": 150,
-  "color": 'white'
+  name: "대화",
+  value: 150,
+  color: "white"
 }, {
-  "name": "질문",
-  "value": 150,
-  "color": 'white'
+  name: "질문",
+  value: 150,
+  color: "white"
 }, {
-  "name": "고집",
-  "value": 45,
-  "color": 'white'
+  name: "고집",
+  value: 45,
+  color: "white"
 }];
 var series = chart.series.push(new am4charts.PictorialStackedSeries());
 series.dataFields.value = "value";
@@ -125849,70 +125854,70 @@ chart.legend.position = "left";
 chart.legend.valign = "bottom";
 chart.legend.valueLabels.template.disabled = true;
 chart.legend.labels.template.adapter.add("fill", function (fill, target) {
-  return 'white';
+  return "white";
 });
 var favorites = [[{
-  "name": "Java",
-  "value": 150,
-  "color": '#6bde76'
+  name: "Java",
+  value: 150,
+  color: "#6bde76"
 }, {
-  "name": "php",
-  "value": 20,
-  "color": '#f5ae9d'
+  name: "Javascript",
+  value: 150,
+  color: "green"
 }, {
-  "name": "Python",
-  "value": 40,
-  "color": '#aee8be'
+  name: "php",
+  value: 20,
+  color: "#f5ae9d"
 }, {
-  "name": "C#",
-  "value": 10,
-  "color": '#526ca7'
+  name: "Python",
+  value: 40,
+  color: "#aee8be"
 }, {
-  "name": "C, C++",
-  "value": 1,
-  "color": '#d5cc5f'
+  name: "C#",
+  value: 10,
+  color: "#526ca7"
+}, {
+  name: "C, C++",
+  value: 1,
+  color: "#d5cc5f"
 }], [{
-  "name": "Javascript",
-  "value": 50,
-  "color": '#6bde76'
+  name: "Jquery",
+  value: 30,
+  color: "#f5ae9d"
 }, {
-  "name": "Jquery",
-  "value": 70,
-  "color": '#f5ae9d'
+  name: "Angular",
+  value: 55,
+  color: "#aee8be"
 }, {
-  "name": "Angular",
-  "value": 55,
-  "color": '#aee8be'
+  name: "React",
+  value: 35,
+  color: "#526ca7"
 }, {
-  "name": "React",
-  "value": 35,
-  "color": '#526ca7'
-}, {
-  "name": "Vue.js",
-  "value": 5,
-  "color": '#d5cc5f'
+  name: "Vue.js",
+  value: 65,
+  color: "#d5cc5f"
 }], [{
-  "name": "MongoDb",
-  "value": 150,
-  "color": '#6bde76'
+  name: "MongoDb",
+  value: 150,
+  color: "#6bde76"
 }, {
-  "name": "Oracle",
-  "value": 80,
-  "color": '#f5ae9d'
+  name: "Oracle",
+  value: 80,
+  color: "#f5ae9d"
 }, {
-  "name": "My-sql",
-  "value": 80,
-  "color": '#aee8be'
+  name: "My-sql",
+  value: 80,
+  color: "#aee8be"
 }, {
-  "name": "Ms-sql",
-  "value": 30,
-  "color": '#526ca7'
+  name: "Ms-sql",
+  value: 30,
+  color: "#526ca7"
 }, {
-  "name": "Redis",
-  "value": 45,
-  "color": '#d5cc5f'
+  name: "Redis",
+  value: 45,
+  color: "#d5cc5f"
 }]];
-var summeryNames = ['summeryOne', 'summeryTwo', 'summeryThree'];
+var summeryNames = ["summeryOne", "summeryTwo", "summeryThree"];
 favorites.forEach(function (element, idx) {
   var innerChart = am4core.create(summeryNames[idx], am4charts.PieChart);
   innerChart.data = element;
@@ -125931,7 +125936,7 @@ favorites.forEach(function (element, idx) {
   pieSeries.labels.template.text = "{name}";
   pieSeries.slices.template.propertyFields.fill = "color";
   pieSeries.labels.template.adapter.add("fill", function (fill, target) {
-    return 'white';
+    return "white";
   });
   innerChart.hiddenState.properties.radius = am4core.percent(0);
 }); //timeLine ----------------------------
@@ -125945,77 +125950,83 @@ chartHistory.maskBullets = false;
 var colorSet = new am4core.ColorSet();
 colorSet.saturation = 0.5;
 chartHistory.data = [{
-  "category": "군인",
-  "start": "2007-03",
-  "end": "2014-07",
-  "color": colorSet.getIndex(13),
-  "task": "대한민국 육군에서 장교로 근무"
+  category: "군인",
+  start: "2007-03",
+  end: "2014-07",
+  color: colorSet.getIndex(13),
+  task: "대한민국 육군에서 장교로 근무"
 }, {
-  "category": "준비",
-  "start": "2014-07",
-  "end": "2014-11",
-  "color": colorSet.getIndex(1),
-  "task": "전역 후 진로 고민"
+  category: "준비",
+  start: "2014-07",
+  end: "2014-11",
+  color: colorSet.getIndex(1),
+  task: "전역 후 진로 고민"
 }, {
-  "category": "공부",
-  "start": "2014-11",
-  "end": "2015-04",
-  "color": colorSet.getIndex(7),
-  "task": "한국 디지털 기업협회에서 프로그래밍 공부"
+  category: "공부",
+  start: "2014-11",
+  end: "2015-04",
+  color: colorSet.getIndex(7),
+  task: "한국 디지털 기업협회에서 프로그래밍 공부"
 }, {
-  "category": "준비",
-  "start": "2015-04",
-  "end": "2015-05",
-  "color": colorSet.getIndex(1),
-  "task": "구직활동"
+  category: "준비",
+  start: "2015-04",
+  end: "2015-05",
+  color: colorSet.getIndex(1),
+  task: "구직활동"
 }, {
-  "category": "근무",
-  "start": "2015-05",
-  "end": "2017-11",
-  "color": colorSet.getIndex(3),
-  "task": "엘토브에서 근무(~대리)"
+  category: "근무",
+  start: "2015-05",
+  end: "2017-11",
+  color: colorSet.getIndex(3),
+  task: "엘토브에서 근무(~대리)"
 }, {
-  "category": "준비",
-  "start": "2017-11",
-  "end": "2017-12",
-  "color": colorSet.getIndex(1),
-  "task": "구직활동"
+  category: "준비",
+  start: "2017-11",
+  end: "2017-12",
+  color: colorSet.getIndex(1),
+  task: "구직활동"
 }, {
-  "category": "근무",
-  "start": "2017-12",
-  "end": "2018-09",
-  "color": colorSet.getIndex(9),
-  "task": "티젠소프트에서 근무(~과장)"
+  category: "근무",
+  start: "2017-12",
+  end: "2018-09",
+  color: colorSet.getIndex(9),
+  task: "티젠소프트에서 근무(~과장)"
 }, {
-  "category": "준비",
-  "start": "2018-09",
-  "end": "2018-10",
-  "color": colorSet.getIndex(1),
-  "task": "구직활동"
+  category: "준비",
+  start: "2018-09",
+  end: "2018-10",
+  color: colorSet.getIndex(1),
+  task: "구직활동"
 }, {
-  "category": "공부",
-  "start": "2019-01",
-  "end": "2020-12",
-  "color": colorSet.getIndex(15),
-  "task": "학점은행제(컴공)"
+  category: "공부",
+  start: "2019-01",
+  end: "2020-12",
+  color: colorSet.getIndex(15),
+  task: "학점은행제(컴공)"
 }, {
-  "category": "근무",
-  "start": "2018-10",
-  "end": "2022-03",
-  "color": colorSet.getIndex(2),
-  "task": "상록아이엔씨 근무(~선임개발자)"
+  category: "근무",
+  start: "2018-10",
+  end: "2022-03",
+  color: colorSet.getIndex(2),
+  task: "상록아이엔씨 근무(~선임개발자)"
 }, {
-  "category": "준비",
-  "start": "2022-03",
-  "end": "2022-07",
-  "color": colorSet.getIndex(14),
-  "task": "개인공부/육아(코로나)"
+  category: "준비",
+  start: "2022-03",
+  end: "2022-07",
+  color: colorSet.getIndex(14),
+  task: "개인공부/육아(코로나)"
 }, {
-  "category": "근무",
-  "start": "2022-07",
-  "end": new Date().yyyymm() + "",
-  "color": colorSet.getIndex(23),
-  "task": "아이에스테크놀로지 근무(~개발차장)"
+  category: "근무",
+  start: "2022-07",
+  end: "2023-04",
+  color: colorSet.getIndex(23),
+  task: "아이에스테크놀로지 근무(~개발차장)"
+}, {
+  category: "근무",
+  start: "2023-04",
+  end: new Date().yyyymm() + "",
+  color: colorSet.getIndex(13),
+  task: "비유바움 근무(~핀테크팀 차장)"
 }];
 chartHistory.dateFormatter.dateFormat = "yyyy-MM";
 chartHistory.dateFormatter.inputDateFormat = "yyyy-MM";
@@ -126027,10 +126038,10 @@ categoryAxis.renderer.labels.template.paddingRight = 25;
 categoryAxis.renderer.minGridDistance = 10;
 categoryAxis.renderer.innerRadius = -60;
 categoryAxis.renderer.radius = 60;
-categoryAxis.renderer.line.strokeColor = 'white'; //그리드 색
+categoryAxis.renderer.line.strokeColor = "white"; //그리드 색
 
-categoryAxis.renderer.grid.template.stroke = 'white';
-categoryAxis.renderer.labels.template.fill = 'white';
+categoryAxis.renderer.grid.template.stroke = "white";
+categoryAxis.renderer.labels.template.fill = "white";
 var dateAxis = chartHistory.xAxes.push(new am4charts.DateAxis());
 dateAxis.renderer.minGridDistance = 70;
 dateAxis.baseInterval = {
@@ -126040,21 +126051,21 @@ dateAxis.baseInterval = {
 dateAxis.renderer.tooltipLocation = 0;
 dateAxis.startLocation = -0.5;
 dateAxis.renderer.line.strokeDasharray = "3,4";
-dateAxis.renderer.line.stroke = 'white';
+dateAxis.renderer.line.stroke = "white";
 dateAxis.renderer.line.strokeOpacity = 1;
 dateAxis.tooltip.background.fillOpacity = 1;
 dateAxis.tooltip.background.cornerRadius = 5;
 dateAxis.tooltip.label.fill = new am4core.InterfaceColorSet().getFor("alternativeBackground");
 dateAxis.tooltip.label.paddingTop = 7;
-dateAxis.renderer.grid.template.stroke = 'white'; //월단위 가운데 선색
+dateAxis.renderer.grid.template.stroke = "white"; //월단위 가운데 선색
 
 var labelTemplate = dateAxis.renderer.labels.template;
 labelTemplate.verticalCenter = "middle";
 labelTemplate.fillOpacity = 0.9;
-labelTemplate.background.fill = 'black'; //요놈이 노멤버 악토버 리셈버 배경 색
+labelTemplate.background.fill = "black"; //요놈이 노멤버 악토버 리셈버 배경 색
 
 labelTemplate.background.fillOpacity = 1;
-labelTemplate.fill = 'white'; //가운데 노멤버 글씨 색
+labelTemplate.fill = "white"; //가운데 노멤버 글씨 색
 
 labelTemplate.padding(7, 7, 7, 7);
 var seriesHistory = chartHistory.series.push(new am4plugins_timeline.CurveColumnSeries());
@@ -126305,7 +126316,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56225" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64002" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
