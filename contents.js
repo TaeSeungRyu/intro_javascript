@@ -57,13 +57,13 @@ let statckDesc = [
     `,
   `
      <div>형상 관리는 git, github, svn을 사용하였습니다.</div>
-     <div>운영체제는 리눅스, 윈도우 계열을 주로 사용하였으며 유닉스, 맥에 대한 경험은 적습니다.</div>
-     <div>자동 배포 및 빌드 도구로는 경험이 적지만 젠킨스를 사용해 보았습니다.</div>
+     <div>운영체제는 리눅스, 윈도우 계열을 주로 사용하였으며 aws, 맥에 대한 경험은 다소 적습니다.</div>
+     <div>자동 배포 및 빌드 도구로는 젠킨스, git action을 사용해 보았습니다.</div>
     `,
   `
      <div>리엑트는 앵귤러를 접하고 난 뒤 21년도부터 다루어 보았습니다.</div>
      <div>클래스형태, 함수형 형태를 모두 경험하여 보았습니다.</div>
-     <div>tanstack, nextjs를 사용 할 수 있습니다.</div>
+     <div>tanstack(라우터, query), next-auth, nextjs를 사용 할 수 있습니다.</div>
     `,
   `
      <div>23년도부터 Vuejs를 활용하여 화면 개발을 하였습니다.</div>
@@ -158,11 +158,6 @@ stackArray.forEach((data, idx) => {
   );
   $("#stack").append(tr);
 });
-
-import * as am4core from "@amcharts/amcharts4/core";
-import * as am4charts from "@amcharts/amcharts4/charts";
-import am4themes_animated from "@amcharts/amcharts4/themes/animated";
-import * as am4plugins_timeline from "@amcharts/amcharts4/plugins/timeline";
 
 /* Chart code */
 // Themes begin
