@@ -26,8 +26,8 @@ let statckDesc = [
      <div>여러 GIS와 관련된 작업을 할 수 있습니다.(오픈레이어스, 카카오톡맵 등)</div>
     `,
   `
-     <div>앵귤러 버전 2.0 이상부터 다룰 수 있습니다.</div>
-     <div>파이어베이스와 연동을 할 수 있습니다.</div>
+     <div>앵귤러는 가장 처음 접해 본 SPA 기술 입니다.</div>  
+     <div>17년도부터 시작 하였으며 앵귤러 버전 2.0 이상부터 다룰 수 있습니다.</div>
      <div>RXJS를 활용하여 구독관계를 통한 데이터 공유를 할 수 있습니다.</div>
     `,
   `
@@ -58,7 +58,7 @@ let statckDesc = [
   `
      <div>형상 관리는 git, github, svn을 사용하였습니다.</div>
      <div>운영체제는 리눅스, 윈도우 계열을 주로 사용하였으며 aws, 맥에 대한 경험은 다소 적습니다.</div>
-     <div>자동 배포 및 빌드 도구로는 젠킨스, git action을 사용해 보았습니다.</div>
+     <div>도커, 젠킨스, 깃액션을 사용하였으며 k8s에 대한 경험은 다소 적습니다.</div>
     `,
   `
      <div>리엑트는 앵귤러를 접하고 난 뒤 21년도부터 다루어 보았습니다.</div>
@@ -67,7 +67,7 @@ let statckDesc = [
     `,
   `
      <div>23년도부터 Vuejs를 활용하여 화면 개발을 하였습니다.</div>
-     <div>컴포지션 형태의 구조를 사용 할 수 있습니다.</div>
+     <div>컴포지션 형태(3.0)의 구조를 사용 할 수 있습니다.</div>
      <div>nuxtjs를 사용 할 수 있습니다.</div>
     `,
 ];
@@ -241,9 +241,9 @@ let favorites = [
     { name: "C, C++", value: 1, color: "#d5cc5f" },
   ],
   [
-    { name: "Jquery", value: 30, color: "#f5ae9d" },
-    { name: "Angular", value: 55, color: "#aee8be" },
-    { name: "React", value: 35, color: "#526ca7" },
+    { name: "Jquery", value: 20, color: "#f5ae9d" },
+    { name: "Angular", value: 25, color: "#aee8be" },
+    { name: "React", value: 55, color: "#526ca7" },
     { name: "Vue.js", value: 65, color: "#d5cc5f" },
   ],
   [
@@ -385,7 +385,7 @@ chartHistory.data = [
     start: "2023-04",
     end: new Date().yyyymm() + "",
     color: colorSet.getIndex(13),
-    task: "비유바움 근무(~핀테크팀 차장)",
+    task: "비유바움 근무(~핀테크팀 팀장, 연구소장)",
   },
 ];
 

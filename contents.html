@@ -18,6 +18,26 @@
       rel="stylesheet"
       crossorigin="anonymous"
     />
+    <style>
+      /* 기본 폰트 설정 (데스크탑) */
+      html {
+        font-size: 16px !important;
+      }
+
+      /* 화면 너비가 768px 이하일 때 (태블릿/모바일) */
+      @media (max-width: 768px) {
+        html {
+          font-size: 13px !important;
+        }
+      }
+
+      /* 화면 너비가 480px 이하일 때 (작은 모바일) */
+      @media (max-width: 480px) {
+        html {
+          font-size: 11px !important;
+        }
+      }
+    </style>
   </head>
   <style>
     body {
@@ -117,9 +137,10 @@
             <div class="row">
               <div class="col-4 h-100 d-table">
                 <div class="d-table-cell align-middle">
-                  제가 가장 중요하게 생각하는 것은 "노력" 입니다.<br />
-                  하는 일에 대해서 "노력"을 하지 않는다면 좋은 성과를 낼 수 없기
-                  때문 입니다.<br />
+                  제가 가장 중요하게 생각하는 것은
+                  <strong>"노력" </strong>입니다.<br />
+                  하는 일에 대해서 <strong>"노력"</strong>을 하지 않는다면 좋은
+                  성과를 낼 수 없기 때문 입니다.<br />
                   어렸을 때 즐겨 보았던 만화
                   <span style="color: #cacebd">"더 파이팅"</span>에서 이러한
                   구절이 있습니다.<br />
@@ -178,14 +199,14 @@
             <div class="row col-12">
               <div class="col-4" style="padding: 0.5rem; height: auto">
                 <div id="summeryOne"></div>
-                <div>Java를 주로 사용하며 개발을 하였습니다.</div>
+                <div>Javascript와 Java를 주로 사용 합니다.</div>
                 <div>C와 C++은 매우 약한 편 입니다.</div>
                 <div>하지만 알고리즘 공부는 틈틈히 하고 있습니다!</div>
               </div>
 
               <div class="col-4" style="padding: 0.5rem">
                 <div id="summeryTwo"></div>
-                <div>최근 Vuejs를 주로 사용 하였습니다.</div>
+                <div>최근에는 Vuejs(+nuxtjs)를 주로 사용 하였습니다.</div>
                 <div>Angular.js(2↑) 프로젝트를 해 보았습니다.</div>
                 <div>React.js(클래스,후크) 프로젝트를 해 보았습니다.</div>
               </div>
@@ -226,7 +247,7 @@
               &nbsp;<i class="fas fa-genderless"></i> 항상 즐겁게, 행복하게
               일하고 싶습니다.
             </h6>
-            <div class="col-12">
+            <div class="col-12 mb-3">
               <div>
                 현실에 안주하지 않고 조금 더 가치있는 사람이 되기위해 항상
                 노력하고 있습니다.
