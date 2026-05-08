@@ -234,7 +234,7 @@ chart.legend.labels.template.adapter.add("fill", function (fill, target) {
 let favorites = [
   [
     { name: "Java", value: 150, color: "#6bde76" },
-    { name: "Javascript", value: 150, color: "green" },
+    { name: "Javascript+Typescript", value: 250, color: "green" },
     { name: "php", value: 20, color: "#f5ae9d" },
     { name: "Python", value: 40, color: "#aee8be" },
     { name: "C#", value: 10, color: "#526ca7" },
