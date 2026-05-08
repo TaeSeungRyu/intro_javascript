@@ -57,8 +57,8 @@ let statckDesc = [
     `,
   `
      <div>형상 관리는 git, github, svn을 사용하였습니다.</div>
-     <div>운영체제는 리눅스, 윈도우 계열을 주로 사용하였으며 aws, 맥에 대한 경험은 다소 적습니다.</div>
-     <div>도커, 젠킨스, 깃액션을 사용하였으며 k8s에 대한 경험은 다소 적습니다.</div>
+     <div>운영체제는 리눅스, 윈도우 계열을 주로 사용하였으며 aws, 맥과 k8s 대한 경험은 다소 적습니다.</div>
+     <div>인공지능을 잘 사용하기 위해 항상 노력하고 있습니다.</div>
     `,
   `
      <div>리엑트는 앵귤러를 접하고 난 뒤 21년도부터 다루어 보았습니다.</div>
@@ -234,7 +234,7 @@ chart.legend.labels.template.adapter.add("fill", function (fill, target) {
 let favorites = [
   [
     { name: "Java", value: 150, color: "#6bde76" },
-    { name: "Javascript+Typescript", value: 250, color: "green" },
+    { name: "Java(Type)script", value: 250, color: "green" },
     { name: "php", value: 20, color: "#f5ae9d" },
     { name: "Python", value: 40, color: "#aee8be" },
     { name: "C#", value: 10, color: "#526ca7" },
