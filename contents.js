@@ -42,7 +42,7 @@ let statckDesc = [
      <div>모델 1방식의 간단한 웹사이트 개발을 할 수 있습니다.</div>
     `,
   `
-     <div>플라스크를 활용하여 간단한 서버를 만들 수 있습니다.</div>
+     <div>플라스크, fast-api를 활용하여 간단한 서버를 만들 수 있습니다.</div>
      <div>인공지능에 대한 개념을 익히기 위해 사이킷런, 텐서플로에 대해서 낮은 수준의 작업을 해 보았습니다.</div>
     `,
   `
@@ -51,7 +51,7 @@ let statckDesc = [
      <div>asterixdb 및 influxdb도 익숙하지는 않지만, 사용할 수 있습니다.</div>
     `,
   `
-     <div>안드로이드 앱 개발은 하이브리드 형식으로 개발을 하고 마켓에 배포한 경험이 있습니다.</div>
+     <div>안드로이드 앱 개발은 플러터, 코틀린으로 개발을 하고 마켓에 배포한 경험이 있습니다.</div>
      <div>아이폰 앱 개발은 하이브리드 형식으로 간단한 유지보수 정도만 해본 경험이 있습니다. </div>
      <div>리엑트네이티브를 시간 날 때 조금씩 연습해 보고 있습니다. </div>
     `,
@@ -243,7 +243,7 @@ let favorites = [
   [
     { name: "Jquery", value: 20, color: "#f5ae9d" },
     { name: "Angular", value: 25, color: "#aee8be" },
-    { name: "React", value: 55, color: "#526ca7" },
+    { name: "React", value: 85, color: "#526ca7" },
     { name: "Vue.js", value: 65, color: "#d5cc5f" },
   ],
   [
@@ -383,9 +383,9 @@ chartHistory.data = [
   {
     category: "근무",
     start: "2023-04",
-    end: new Date().yyyymm() + "",
+    end: "2026-10",
     color: colorSet.getIndex(13),
-    task: "비유바움 근무(~핀테크팀 팀장, 연구소장)",
+    task: "비유바움 근무(핀테크팀 팀장, 개발4팀 팀장, 연구소장)",
   },
 ];
 
