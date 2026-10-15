@@ -136,7 +136,7 @@ let stackArray = [
   {
     img: "./mobile.jpg",
     name: "Mobile",
-    level: stars[0] + stars[0] + stars[2] + stars[2] + stars[2],
+    level: stars[0] + stars[0] + stars[0] + stars[1] + stars[2],
     desc: statckDesc[8],
   },
   {
